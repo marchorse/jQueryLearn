@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!-- 1.16 检测浏览器支持的特性
+	列出所有支持的检测属性 -->
+<!-- jQuery的目标之一就是处理浏览器的兼容性问题。
+	jQuery隐藏了很多浏览器厂商和浏览器版本之间的细微差异。
+	但有些差异jQuery处理不了。
+	下面代码jQuery通过属性指示当前浏览器是否支持某个功能或特性。 -->
+<html lang="en">
+	<head>
+		<title>The support property</title>
+		<!-- css一般是由开源框架的，如facebook好像就有 -->
+		<!-- 使用css模板加快开发速度 -->
+	</head>
+	
+	<body>
+		<p>The paragraph under this contains the supported properties of this browser:</p>
+		<!-- <p id='#placeholder'></p>jQuery和html的id使用方式弄混 -->
+		<p id='placeholder'></p>
+		
+		<!-- Resource interpreted as Script but transferred with MIME type text/plain: "file:///D:/Users/marc/workspace/jQueryLearn/jQueryCoreIntroduction/jquery-latest.min.js".  -->
+		<!-- <script src='jquery-latest.min.js'></script> 加上type刷新页面好像依然有这个警告，关闭重开则好像没有-->
+		<script type='text/javascript' src='jquery-latest.min.js'></script>
+		
+		<script>
+			$(document).ready(function() {
+				var result = [];
+				
+				$.each(
+						('ajax boxModel changeBubbles checkClone checkOn cors cssFloat ' +
+							'herfNormalized htmlSerialize leadingWhitespace noCloneChecked ' + 
+							'noCloneEvent opacity optDisabled optSelected style ' +
+							'submitBubbles tbody').split(' '), function(index, name) {
+							result.push(name + ' = ' + $.support[name] + '<br>')
+						}
+						);
+				
+				console.log(result);
+				console.log(result.join(''));
+				console.log($('#placeholder').length);
+				//console.log(JSON.stringify($('#placeholder').get(0)));Uncaught TypeError: Converting circular structure to JSON 
+				$('#placeholder').html(result.join(''));
+			});
+		</script>
+		<!-- ajax属性表示浏览器是否支持对服务器的调用。
+			opacity属性表示是否能创建在多个元素之间的透视的效果。
+			jQuery.support。
+			jQuery包含一个不应该使用的browser属性。
+			但是尽量不要使用这些属性。 -->
+	</body>
+</html>

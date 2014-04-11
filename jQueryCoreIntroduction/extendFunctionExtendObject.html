@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!-- 1.14使用extend()扩展对象
+	演示扩展对象的副作用 -->
+
+<!-- 把两个对象合并成一个对象或者用另外一个对象里面的函数和属性来扩展一个对象 -->
+<html lang="en">
+	<head>
+		<title>The extend() function</title>
+	</head>
+	
+	<body>
+		<p>First object:</p>
+		<p id="object-1"></p>
+		<p>Second object</p>
+		<p id="object-2"></p>
+		<p>Result object:</p>
+		<p id="object-result"></p>
+		<button id="extend">Extend</button>
+		<button id="extend-new">Extend into empty</button>
+		<button id="reset">Reset</button>
+		<script src="jquery-latest.min.js"></script>
+
+		<!--  -->		
+		<script>
+			$(document).ready(function() {
+				var reset,
+					object1 = object2 = objectresult = {};
+				var show = function() {
+					$('#object-1').html(JSON.stringify(object1));
+					$('#object-2').html(JSON.stringify(object2));
+					$('#object-result').html(JSON.stringify(objectresult));
+					
+				};
+				
+				(reset = function() {
+					object1 = {
+							a:'original a',
+							b:'original b',
+							c:'original c'
+					};
+					object2 = {
+							c:'different c',
+							d:'different d'
+					};
+					objectresult = {};
+					show();
+				})();
+				
+				$('#extend').click(function() {
+					//has side object effects for object1
+					objectresult = $.extend(object1, object2);
+					show();
+				});
+				
+				$('#extend-new').click(function() {
+					//without side effects for object1
+					objectresult = $.extend({}, object1, object2);
+					show();
+				});
+				
+				$('#reset').click(function() {
+					reset();
+				});
+			});
+		</script>
+	</body>
+</html>

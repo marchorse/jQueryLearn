@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!-- 1.6使用数组元素
+	 多种获取数组和元素的方法 -->
+
+
+<!-- jquery选取集对象是一个“类数组”，有数组的某些特性，但不是javascript数组 
+	访问整形数组，字符串数组，以及隐式包含了html元素列表的jquery对象
+	本段代码演示访问jquery对象中的html元素以及如何把列表转变成一个普通的非jquery数组-->
+<html lang="en">
+
+	<head>
+		<title>The get() function and alternatives</title>
+	</head>
+	
+	<body>
+		<h2>Various ways to get an array or a specific element</h2>
+		
+		<p>First</p>
+		<p>Second</p>
+		<p>Third</p>
+		
+		<button id="get">Get</button>
+		<button id="to-array">To array</button>
+		<button id="make-array">Make array</button>
+		<button id="first">First</button>
+		<button id="get-first">Get First</button>
+		<button id="get-last">Get last</button>
+		
+		<script src="jquery-latest.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				
+				//把jquery选取集转变成HTML元素数组，提供三种可读性不同的方案，一般意义上来讲
+				$('#get').click(function() {
+					alert('Get p= '+$('p').get());
+				});
+				
+				$('#to-array').click(function() {
+					alert('Get p= '+$('p').toArray());
+				});
+				
+				$('#make-array').click(function() {
+					alert('Get p= '+$.makeArray($('p')));
+				});
+				
+				
+				//从当前选取集中获取制定位置的元素
+				$('#first').click(function() {
+					alert('First p = '+ $('p')[0].innerHTML);
+				});
+				
+				$('#get-first').click(function() {
+					alert('Get first p= '+$('p').get(0).innerHTML);
+				});
+				
+				$('#get-last').click(function() {
+					alert('Get first p= '+$('p').get(-1).innerHTML);
+				});
+				
+			});
+		</script>
+	</body>
+	
+</html>

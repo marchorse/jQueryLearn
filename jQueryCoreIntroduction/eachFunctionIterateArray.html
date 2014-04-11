@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!-- 1.4使用each()迭代数组
+	给列表的每项值编号 -->
+
+<html lang="en">
+	<head>
+		<title>The each() function</title>
+		<!-- jquery之所以能用更少的代码做更多的事情，原因之一js可以作为函数式语言使用 -->
+		<!-- each函数迭代普通数组，jquery选取集（jquery为自身提供了很多简写标记函数可以不用each就达到功能，有时候）。可读性需要让人更偏爱each多于for循环，但是for循环可能更快 -->
+	</head>
+	
+	<body>
+		<h2> This example demonstrates the each() function by
+			prepending a letter before each paragraph below</h2>
+		
+		<p>First</p>
+		<p>Second</p>
+		<p>Third</p>
+		
+		<!--  <script src="http://code.jquery.com/jquery-latest.min.js"><</script> -->
+		<script src="jquery-latest.min.js"></script>
+		<script>
+			$(document).ready(function () {
+				var values = ['a','b','c','d'];
+				
+				$.each(values, function(index, value) {
+					values[index] = value.toUpperCase();
+					
+				});
+				
+				$('p').each(function(index, el){
+					$(el).prepend(' - ');
+				});
+				
+				$('p').each(function(index){
+					$(this).prepend(values[index]);
+				})
+				
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<!-- 1.10获取HTML5的data-属性
+	读取data-myattribute的隐藏文本 -->
+<!-- 使用HTML5可以再HTML元素上添加以data-开头的自定义属性。、
+	这对于要传输很多余 DOM树关联的小数据块的web应用程序很有用，他们对于网站访问者不可见。
+	使用jquery读取这些data-属性的内容 -->
+<html>
+	<head>
+		<title>Using data() for HTML5 data- attributes</title>
+	</head>
+	
+	<body>
+	
+		<p data-myattribute="just some random content" id="test-data">
+		If you press the button, you can reveal the text hidden as an attribute 
+		inside the paragraph element as an HTML5 data attribute.
+		</p>
+		
+		<button>Get data attribute</button>
+		
+		<script src="jquery-latest.min.js"></script>
+		
+		<!-- 如果属性是data-myattribute, 可以使用data函数并指定myattribute来获取数据。此时可以认为data是一个便捷函数。 -->
+		<script>
+			$(document).ready(function() {
+				$('button').click(function() {
+					alert('The data is '+$('#test-data').data('myattribute'));
+				});
+			});
+		</script>
+	</body>
+</html>

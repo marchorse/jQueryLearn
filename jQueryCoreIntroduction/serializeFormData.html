@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!-- 1.5序列化表单中的数据
+	将当前表单输入序列化成两种不同的格式 -->
+<!-- 这里的序列化不是java中的对象序列化，在java中把一个对象声明为持久性的，将对象转换为一个字节序列 -->
+<!-- 这里的序列化是把表单的数据读取出来并做转义！！！ -->
+<!-- 如果想在提交表单之前得到它当前的输入数据，可以选取所有的表单元素，迭代它们，然后挨个读取它们的值。
+	当然还有更为简单的方法，代码演示了两种只调用一个函数就能获取当前表单输入数据的方法。 -->
+<html lang="en">
+	<head>
+		<title>The serialize() and serializeArray() function</title>
+		
+	</head>
+	
+	<body>
+		<h2>Press the buttons to see the result of two different serialization functions</h2>
+		
+		<!-- action=的页面时表单将被提交的页面 -->
+	<form name="input" action="html_form_action.asp" method="get">
+		Username: <!-- 现在又label标签 -->
+		<input type="text" name="user" /> 
+		<input type="submit" value="Submit" />
+	</form>
+	<!-- 表单的动作属性（Action）和确认按钮
+			当用户单击确认按钮时，表单的内容会被传送到另一个文件。
+			表单的动作属性定义了目的文件的文件名。
+			由动作属性定义的这个文件通常会对接收到的输入数据进行相关的处理。 -->
+		<form action="xxx" method="post">
+			<label for="first_field">First field</label>
+			<input type="text" name="first_field" value="" id="first_field"><br>
+			<label for="second_field">Second field</label>
+			<input type="text" name="second_field" value="" id="second_field"><br>
+			<label for="third_field">Third field</label>
+			<input type="text" name="third_field" value="" id="third_field"><br>
+			<label for="fourth_field">Third field</label>
+			<input type="text" name="third_field" value="" id="fourth_field"><br>
+		</form>
+		
+		<input type="button" name="serialize" value="Serialize" id="serialize">
+		<input type="button" name="serialize-name" value="SerializeArray" id="serialize-array">
+		
+		<div id="placeholder"></div>
+		<script src="jquery-latest.min.js"></script>
+		
+		<script>
+			$(document).ready(function() {
+				//serialize方法获取表单内容，得到的结果是转义过的查询字符串(query string)，
+				//可以直接用于向服务器发送HTTP请求。
+				$('#serialize').click(function() {
+					$('#placeholder').html($('form').serialize());
+				});
+				
+				//serializeArray方法也是获取表单内容，是一个内部辅助方法，在serialize方法中会被调用。
+				//serializeArray方法返回一个包含一些键和值得对象。
+				//如果想把表单内容转换成不同的对象，用serializeArray方法得到的结果更容易使用。
+				$('#serialize-array').click(function() {
+					$('#placeholder').html(JSON.stringify(JSON.stringify(
+							$('form').serializeArray())));
+				});
+			});
+		</script>
+	</body>
+</html>

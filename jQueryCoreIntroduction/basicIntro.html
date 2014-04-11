@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!-- 1.1jQuery的基本使用简介 -->
+<!-- write less, do more--jquery principle -->
+<!-- separate the html and javascript clearly -->
+
+<html lang="en">
+	<head>
+		<title>Introduction</title>
+		<style>
+			.myclass {
+				background-color: black;
+				color: white;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<h1>Introduction</h1>
+		<p> The HTML in example is kept as simple as possible. </p>
+		<p class="myclass"> this is a placeholder for content</p>
+		<p id="myid">click on this paragraph</p>
+		<!-- 内容分发网络 CDN content delivery network -->
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				//css selector
+				$('p').css('font-weight', 'bold');
+				//change html content
+				$('.myclass').html('Different <em>content</em>');
+				$('#myid').click(function () {
+					console.log('click event')
+					alert('hello world');
+				});
+			});
+		</script>
+		<!-- 分离html和javascirpt -->
+		<!-- 在http://docs.jquery.com/Downloading-jquery 查看CDN提供者列表 -->
+	</body>
+</html>

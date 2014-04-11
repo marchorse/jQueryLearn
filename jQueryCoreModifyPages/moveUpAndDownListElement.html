@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+	<title>
+		Pushing elements up and down
+	</title>
+	
+	<style>
+		div:first-of-type button.up {
+			visibility: hidden;
+		}
+		div:last-of-type button.down {
+			visibility: hidden;
+		}
+	</style>
+</head>
+
+<body>
+	<h2>Click on the up and down buttons to move the rows</h2>
+	
+	<div>
+		<button class="up">Up</button>
+		<button class="down">Down</button>
+		This was initially the first element.	
+	</div>
+	
+	<div>
+		<button class="up">Up</button>
+		<button class="down">Down</button>
+		This was initially the second element.
+	</div>
+	
+	<div>
+		<button class="up">Up</button>
+		<button class="down">Down</button>
+		This was initially the third element.
+	</div>
+	
+	<div>
+		<button class="up">Up</button>
+		<button class="down">Down</button>
+		This was initially the fourth element.
+	</div>
+	
+	<div>
+		<button class="up">Up</button>
+		<button class="down">Down</button>
+		This was initially the fifth element.
+	</div>
+	
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script>
+	//insertBefore and insertAfter
+		$(document).ready(function() {
+			console.log($.fn.jquery);
+			console.log("insertAfter and insertBefore");
+			$('.up').click(function() {
+				console.log("up eventlistener");
+				var parent = $(this).parent();
+				parent.insertBefore(parent.prev());
+			});
+			$('.down').click(function() {
+				console.log("down eventlistener")
+				var parent = $(this).parent();
+				parent.insertAfter(parent.next());
+			});
+		});
+	</script>
+	
+</body>
+
+</html>

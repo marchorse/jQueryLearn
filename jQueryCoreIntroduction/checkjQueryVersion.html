@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<!-- 1.3检测jQuery版本
+	测试一个对象是否为jQuery对象 -->
+<html lang="en">
+	<head>
+		<title>
+			jQuery Version
+		</title>
+		<!-- 可从jQuery本身获得它的当前版本 -->
+		<!-- jQuery属性的不同用法 -->
+		<!-- 判断当前对象是否为jQuery对象 -->
+	</head>
+	
+	<body>
+		<p> the jquery version is :<span id="placeholder"></span></p>
+		
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		
+		<script>
+			$(document).ready(function() {
+				var a = {b:1, c:2};
+				var b = $('#placeholder');
+				var jqVersion = $.fn.jquery;
+				
+				console.log(a.jquery);
+				
+				if(a.jquery) {
+					a.html(jqVersion+(' (a)'));
+				}
+				
+				if(b.jquery) {
+					b.html(jqVersion+(' (b)'));
+				}
+			});
+		</script>
+	</body>
+</html>

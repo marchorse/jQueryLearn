@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!-- 1.2和其他库一起使用jQuery
+	将$分配给其他函数 -->
+<html lang="en">
+	<head>
+		<title>$.noConflict()</title>
+		<!-- 和其他库一起使用 -->
+		<!--很多编程语言把$作为保留字，不能用作变量名。 
+			很多js库都使用$作为一些重要函数的简化标记符号。
+			jQuery使用$作为jQuery别名，调用jQuery函数可以使用较长变量名jQuery -->
+	</head>
+	
+	<body>
+		<p> this example shows how to mix jQuery with non-jQuery 
+		code that uses the $ as a function name. Click on this
+		paragraph to test it.</p>
+		
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		
+		<script>
+			$(document).ready(function () {
+				$.noConflict();//$和jQuery解绑定
+				
+				//把$作为自定义函数名使用
+				$ = function (name) {
+					alert("Hello "+name);
+				};
+				
+				//这里的$不是jQuery
+				var clickHandler = function() {
+					$('Reader');
+				};
+				
+				
+				//noConflict解绑定之后也可以用$访问jQuery代码
+				//将jQuery对象作为函数的参数传递，确保$的作用域只在该函数内部
+				(function ($) {
+					$('p').click(clickHandler);
+				})(jQuery);
+			});
+		</script>
+	</body>
+</html>

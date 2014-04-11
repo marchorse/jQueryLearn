@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!-- 使用length检测元素集的大小 -->
+
+<!-- length is not a function but size is a function! -->
+<!-- 通过length属性可以获知jquery选取了多少个元素，和size函数的返回值是一样的 -->
+<html>
+	<head>
+		<title>The length is not a function but a data attribute</title>
+		
+	</head>
+	<body>
+	
+		<h2>By clicking on the button below, you can see the length of the selected element set.</h2>
+		<p>First</p>
+		<p>Second</p>
+		<p>Third</p>
+		
+		<button id="get-length">Get length</button>
+		<script src="jquery-latest.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				$('#get-length').click(function() {
+					alert('Data Attribute Length = '+$('p').length);
+					//Wrong!alert('function Length = '+$('p').length());
+					alert('size() and Length = '+$('p').size());
+				});
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!-- 1.11使用data()存储元素数据
+	存储元素数据而不影响其他元素 -->
+
+<!-- 这段代码展示了如何用data()把元素的特定数据存储到文档之外的中心存储 -->
+<!-- 操作HTML文档比较慢。有些web应用程序滥用HTML文档以存储和特定的HTML元素关联的隐藏数据。
+	应用程序可以使用像data-attribute这样的属性来存储隐藏数据
+	以前在HTML文档中存储数据被认为是不好的习惯，塞入自定义元素，不但导致验证错误而且导致潜在的页面渲染问题。
+	HTML5增加了对data-*属性的支持 -->
+<html lang="en">
+	<head>
+		<title>The data() function: storing</title>
+	</head>
+	
+	<body>
+		<button id="store">Store some data in the paragraph below</button><br/>
+		
+		<button id="show-data">Show the data in the paragraph below</button>
+		
+		<p id="store-data">Even if you look in Firebug, you cannot see any data that is
+		stored related to this element after storing it.</p>
+		
+		<button id="show-empty">Show that the next paragraph does not contain the data</button>
+		
+		<p id="empty-data">To show you that the data belongs to the other paragraph,
+		 this paragraph is intentionally left without any data.</p>
+		 
+		<script src="jquery-latest.min.js"></script>
+		<!-- 数据没有存储在文档中，但仍与特定的元素关联着 -->
+		<script>
+			$(document).ready(function() {
+				//存储这段数据并没有导致html文档发生变化，chrome审查元素看不到新增的数据数据属性
+				$('#store').click(function() {
+					$('#store-data').data('myattribute', 'some data');
+				});
+				
+				$('#show-data').click(function() {
+					alert('The data is: '+$('#store-data').data('myattribute'));
+				});
+				
+				$('#show-empty').click(function() {
+					alert('The data is : '+$('#empty-data').data('myattribute'));
+				});
+			});
+		</script> 
+	</body>
+</html>

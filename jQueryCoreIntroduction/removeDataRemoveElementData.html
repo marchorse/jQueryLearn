@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!-- 1.12使用removeData()移除元素数据
+	演示数据移除和对象存储 -->
+<html>
+	<head>
+		<title>The data() function: removing</title>
+		<!-- 注意内存的占用，当不再需要和某个元素关联的数据是，移除之。 -->
+	</head>
+	
+	<body>
+		<button id="store-data">Store data</button>
+		<button id="show-data">Show data</button>
+		<button id="remove-data">Remove data</button>
+		
+		<p id="store-data-paragraph"> 
+		This paragraph element is the placeholder for the data to be stored.
+		Showing the data will reveal a little bit of the jQuery internals for storing data.
+		You can ignore the technical details</p>
+		
+		<script src="jquery-latest.min.js"></script>
+		
+		<script>
+			$(document).ready(function() {
+				alert($('#store-data').length);
+				//alert(JSON.stringify($('#store-data').get()));
+				alert($('#store-data').get());
+				
+				//data函数存储数据,数据是javascript对象标记语言（JSON）格式。
+				$('#store-data').click(function() {
+					$('#store-data-paragraph').data('myattribute', {a:'first', b:'second'});
+				});
+				
+				$('#show-data').click(function() {
+					alert('The data is: '+
+							JSON.stringify($('#store-data-paragraph').data()));
+				});
+				
+				//若只想移除myattribute，可以将其作为参数。
+				$('#remove-data').click(function() {
+					$('#store-data-paragraph').removeData();
+				});
+			});
+		</script>
+	</body>
+</html>

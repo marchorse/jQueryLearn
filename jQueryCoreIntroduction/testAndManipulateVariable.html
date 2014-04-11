@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!-- 1.13检验和操作变量
+	显示变量类型和修改数组 -->
+<!-- js是弱类型语言，有时需要确定变量存储的数据是什么类型 -->
+<!-- 使用jquery辅助函数集来检验数据类型 -->
+<html lang="en">
+	<head>
+		<title>Various variable testing functions</title>
+	</head>
+	
+	<body>
+		<p>This is a list of variable type tests, followed by a few modification functions:</p>
+		
+		<p id= "placeholder"></p>
+		
+		<script src="jquery-latest.min.js"></script>
+		
+		<script>
+			$(document).ready(function() {
+				var testObj = {},
+					testVar = 1,
+					testFun = function() {},
+					testArr = [1, 2, 2];
+					
+				var results = [];
+				
+				results = [];
+				
+				results.push('testObj='+JSON.stringify(testObj));
+				results.push('testVar='+JSON.stringify(testVar));
+				results.push('testFun='+JSON.stringify(testFun));
+				results.push('testArr='+JSON.stringify(testArr));
+				
+				results.push('<br/>');
+				
+				//jquery type函数检验数据类型，检查变量对应的内部类型（[[Class]]）的存在。
+				//jquery的type函数如果找到了对应的内部类型就会显示它。
+				//jquery的type函数和标准javascript中的typeof函数主要区别在返回值可能不同。
+				//对于一个javascript内部数组变量。typeof返回object而type返回array。
+				results.push('type(testObj) = '+$.type(testObj));
+				results.push('type(testVar) = '+$.type(testVar));
+				results.push('type(testFun) = '+$.type(testFun));
+				results.push('type(testArr) = '+$.type(testArr));
+				
+				results.push('<br/>');
+				
+				//在数组中查找某一指定值，返回它在数组中的索引或者-1
+				results.push('inArray(3,testArr) = ' + $.inArray(3,testArr));
+				//检查对象是否为数组
+				results.push('isArray(testArr) = ' + $.isArray(testArr));
+				
+				//检查对象是否有值或者数据内容
+				results.push('isEmptyObject(testObj) = ' + $.isEmptyObject(testObj));
+				results.push('isEmptyObject(undefined) = ' + $.isEmptyObject(undefined));
+				results.push('isEmptyObject(null) = ' + $.isEmptyObject(null));
+				
+				//检查对象是否使用{}或者new Object创建的。
+				results.push('isPlainObject(testObj) = ' + $.isPlainObject(testObj));
+				
+				//检查像alert这样的浏览器原生函数，jquery的isFunction可能会失效，比如在IE中。
+				results.push('isFunction(testFun) = ' + $.isFunction(testFun));
+				
+				results.push('<br/>');
+				
+				//合并数组和从数组中筛选出唯一的元素，这些函数有副作用，会更改作为参数传入的数组。
+				results.push('merge(testArr, [3,4,5]) = ' + $.merge(testArr, [3,4,5]));
+				results.push('unique(testArr) = ' + $.unique(testArr));
+				results.push('merge(testArr, [6,7]) = ' + $.merge(testArr, [6,7]));
+				results.push('testArr = ' + testArr);
+				
+				$('#placeholder').append(results.join('<br/>'));
+			});
+		</script>
+	</body>
+</html>

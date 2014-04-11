@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!-- 1.5使用map操作数组
+	修改数组中的所有元素 -->
+
+<!-- 不应把这里的map和java里的hashmap联系起来，这里的map类似于python里面的map映射函数，与dict数据类型不相干 -->
+<html lang="en">
+	<head>
+		<title>The map() function</title>
+		<!-- 这段代码展示了map实现类似于前面each样例的功能 -->
+		<!-- each更适于基于数组元素的函数调用，map函数专注于通过处理数组元素把他们变成一个新的数组
+		map函数中，变量的赋值由return完成 -->
+	</head>
+	
+	<body>
+		<h2>This example shows the basic usage of function map</h2>
+		<p id="before">Before map(): </p>
+		<p id="after">After map(): </p>
+		
+		<script src="jquery-latest.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				var arr = [1,2,3,4,5];
+				
+				console.log(JSON.stringify(arr));
+				console.log(JSON.stringify);
+				
+				$('#before').append(JSON.stringify(arr));
+				
+				//
+				arr = $.map(arr, function(value, index) {
+					console.log('index->'+index+', '+'value->'+value);
+					//console.log("\n");
+					//
+					return 'done something with '+value;
+				});
+				
+				$('#after').append(JSON.stringify(arr));
+			});
+		</script>
+	</body>
+</html>

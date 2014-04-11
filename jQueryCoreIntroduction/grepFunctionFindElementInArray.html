@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!-- 1.8使用grep()在数组中查找元素
+	 选取一年中的名字含有字母r的月份-->
+
+<!-- 就像在Unix的文件中查找文本，grep函数和map、each很相似，使用grep选取名字中含有字母r的月份的字符串 -->
+<html lang="en">
+	<head>
+		<title>the grep() function</title>
+	</head>
+	
+	<body>
+		<h2>All months</h2>
+		<p id="all-months"></p>
+		
+		<h2>Months when you should take extra vitamin</h2>
+		<p id="vitamin"></p>
+		
+		<script src="jquery-latest.min.js"></script>
+		
+		<!-- each函数在数组中的每个元素都调用别的函数时很有用，
+			map函数在更改数组中所有元素值时很有用
+			grep函数在选取数组的一个子集时很有用,根据当前元素是否应该出现在结果集中决定返回true或false -->
+		<script>
+			$(document).ready(function(){
+				var arr = ['Janunary', 'February','March','April','May','June','July','August','September','October','November','December'];
+				
+				var rInMonth = $.grep(arr, function(value, index) {
+					return value.indexOf('r') >= 0;
+				});
+				
+				$('#all-months').html(arr.join('<br/> '));
+				$('#vitamin').html(rInMonth.join('<br/> '));
+				
+			});
+		</script>
+	</body>
+</html>
