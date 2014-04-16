@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<!-- 粗略地选取元素后，可使用filter函数来优化查询结果。
+	这样做有两个用处。首先，不是所有的CSS选择器和扩展选择器都一样快。
+	与其使用较慢的选择器从整个文档中选取元素的做法相比，先使用较快的选择器选取元素，然后用较慢的选择器进一步优化这个选取集，性能将会有所提升。
+	其次，使用jQuery可以链式调用函数。
+	如果链中的某些函数只作用域选取集的子集而别的链上的函数别的链上的函数需要作用于整个选取集，
+	此时filter和end两个函数就可以派上用场！ -->
+
+<html lang="en">
+	<head>
+		<title>The filter() and end() function</title>
+	</head>
+	
+	<body>
+		<h2>Filter the selection</h2>
+		
+		<ul>
+			<li>One</li>
+			<li>Two</li>
+			<li>Three</li>
+			<li>Four</li>
+			<li>Five</li>
+			<li>Six</li>
+			<li>Seven</li>
+			<li>Eight</li>
+			<li>Nine</li>
+			<li>Ten</li>
+			
+		</ul>
+		
+		<script src="jquery-latest.min.js"></script>
+		
+		<script>
+			$(document).ready(function() {
+				$('li')//此处执行任何函数将会影响这个li选取集。
+					.filter(':odd').css('background-color', 'yellow')//filter和end之间的CSS函数只会影响筛选出来的奇元素。
+					.end().css('color','red');//end函数表示jQuery已经处理完filter函数筛选的元素集，恢复到上一次选取集以便另行处理。之后链中的函数将影响所有的li元素。
+				
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<!-- 这一章演示如何使用jQuery选取元素，涵盖CSS选择器、扩展选择器以及用于进一步查找和筛选元素的函数。 -->
+
+<html lang="en">
+	<head>
+		<title>Combine two element sets</title>
+	</head>
+	<!-- 使用标准jQuery选择器可以做单次查询。除了单次CSS查询外，可以使用add函数附加选择器。
+		这样不用修改原来的选择器就能获得新的附加选取集。
+		代码演示单个操作合并两次CSS查询的结果。 -->
+	<body>
+		<div>This text should be normal.</div>
+		<p>This text should become blue.</p>
+		<span>This text should become blue.</span>
+		<div>This text should become normal.</div>
+		<p>This text should become blue.</p><!-- 后面这个</p>如果写错为<p>会出现莫名其妙的东西，但不会改变结果的显示 -->
+		<span>This text should become blue.</span>
+		<script src="jquery-latest.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				$('p').add('span').css('background-color', 'blue');
+				//连续多次使用add函数，很方便。
+				$('div').add('span').add('p').css('background-color','yellow');
+				console.log($('div').add('span').add('p'));
+				console.log($('div').add('span'));
+			});
+		</script>
+	</body>
+</html>
